@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+
+public class pokemon {
+
+    public static void main(String[] args) throws Exception {
+
+        FileReader fr = new FileReader("F:\\Java Training\\pokemon.csv");
+
+        BufferedReader br = new BufferedReader(fr);
+
+
+        String line = "";
+
+        HashMap<String, Integer> typeCount = new HashMap<>();
+        while ((line = br.readLine()) != null) {
+            String temp=(line.split(",")[1]);
+            if(temp.equals("Type")){
+                continue;
+            }
+            if(typeCount.containsKey(temp)){
+                typeCount.put(temp,typeCount.get(temp)+1);
+            }
+            else {
+                typeCount.put(temp,1);
+            }
+        }
+        typeCount.forEach((K,V)->System.out.println(K+" : "+V));
+
+    }
+}
